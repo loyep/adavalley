@@ -25,7 +25,7 @@ class MachinesController extends Controller
      */
     public function create()
     {
-        //
+        return view('machines.create');
     }
 
     /**

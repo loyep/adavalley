@@ -24,7 +24,8 @@ class StoreWorkOrderRequest extends FormRequest
     public function rules()
     {
         return [
- 
+            'machine_id'   => 'exists:machines,id|required',
+            'notes'     => 'nullable|max:255',
         ];
     }
 }

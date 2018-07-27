@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class WorkOrder extends Model
 {
-    protected $fillable = ['status'];
+    protected $fillable = ['status', 'notes', 'machine_id'];
 }

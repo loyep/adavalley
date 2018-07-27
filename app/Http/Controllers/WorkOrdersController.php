@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Machine;
 use App\WorkOrder;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreWorkOrderRequest;
@@ -15,7 +16,9 @@ class WorkOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $workOrders = WorkOrder::all();
+
+        return view('work-orders.index', compact('workOrders'));
     }
 
     /**
@@ -25,7 +28,9 @@ class WorkOrdersController extends Controller
      */
     public function create()
     {
-        //
+        $machines = Machine::all();
+
+        return view('work-orders.create', compact('machines'));
     }
 
     /**

@@ -8,5 +8,7 @@ class Machine extends Model
 {
     protected $fillable = [
         'number',
+        'name',
+        'description',
     ];
 }

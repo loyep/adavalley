@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\WorkOrder;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,7 +13,9 @@ class CreateWorkOrderTest extends TestCase
     /** @test */
     public function a_work_order_can_be_created_in_database()
     {
-        $this->post('/work-orders', [])->assertStatus(201);
+        $workOrder = factory(WorkOrder::class)->make();
+
+        $this->post('/work-orders', $workOrder->toArray())->assertStatus(201);
 
         $this->assertDatabaseHas('work_orders', ['id' => 1]);
     }
@@ -20,7 +23,19 @@ class CreateWorkOrderTest extends TestCase
     /** @test */
     public function a_work_order_will_default_to_a_pending_status()
     {
-        $this->post('/work-orders', []);
+        $workOrder = factory(WorkOrder::class)->make();
+
+        $this->post('/work-orders', $workOrder->toArray());
+
+        $this->assertDatabaseHas('work_orders', ['id' => 1, 'status' => 'pending']);
+    }
+
+    /** @test */
+    public function a_work_order_must_be_associated_with_a_machine()
+    {
+        $workOrder = factory(WorkOrder::class)->make(['machine' => null]);
+
+        $this->post('/work-orders', $workOrder->toArray());
 
         $this->assertDatabaseHas('work_orders', ['id' => 1, 'status' => 'pending']);
     }

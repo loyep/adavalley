@@ -25,8 +25,8 @@ class StoreMachineRequest extends FormRequest
     {
         return [
             'number'        => 'required|unique:machines,number|alpha_num',
-            'name'          => 'alpha_dash|max:40',
-            'description'   => 'alpha_dash|max:255',
+            'name'          => 'max:40|nullable',
+            'description'   => 'max:255|nullable',
         ];
     }
 }

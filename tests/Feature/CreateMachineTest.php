@@ -13,19 +13,24 @@ class CreateMachineTest extends TestCase
     /** @test */
     public function a_machine_can_be_created_in_database()
     {
-        $number = 34;
-        
-        $this->post('/machines', ['number' => $number])
+        $machine = factory(Machine::class)->make();
+
+        $this->post('/machines', $machine->toArray())
             ->assertStatus(201);
             
-        $this->assertDatabaseHas('machines', ['number' => $number]);
+        $this->assertDatabaseHas('machines', [
+            'number'        => $machine->number,
+            'name'          => $machine->name,
+            'description'   => $machine->description
+        ]);
     }
 
     /** @test */
     public function a_machine_must_have_a_unique_number()
     {
-        $this->post('/machines', ['number' => 1]);
-        $this->post('/machines', ['number' => 1]);
+        $machine = factory(Machine::class)->create();
+
+        $this->post('/machines', ['number' => $machine->number])->assertStatus(302);
 
         $this->assertCount(1, Machine::all());
     }
