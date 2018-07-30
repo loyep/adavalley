@@ -15,9 +15,20 @@ class ViewMachineTest extends TestCase
     {
         $machines = factory(Machine::class, 3)->create();
 
-        $this->get('/machines')
+        $response = $this->get('/machines')
             ->assertSee($machines[0]->fresh()->name)
             ->assertSee($machines[1]->fresh()->description)
             ->assertSee($machines[2]->fresh()->number);
+    }
+
+    /** @test */
+    public function an_employee_can_view_a_single_machine()
+    {
+        $machine = factory(Machine::class)->create();
+
+        $response = $this->get('/machines/1')
+            ->assertSee($machine->description)
+            ->assertSee($machine->name)
+            ->assertSee($machine->number);
     }
 }

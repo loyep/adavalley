@@ -30,7 +30,9 @@ class CreateMachineTest extends TestCase
     {
         $machine = factory(Machine::class)->create();
 
-        $this->post('/machines', ['number' => $machine->number])->assertStatus(302);
+        $this->post('/machines', ['number' => $machine->number])
+            ->assertSessionHas('errors')
+            ->assertStatus(302);
 
         $this->assertCount(1, Machine::all());
     }

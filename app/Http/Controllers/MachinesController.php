@@ -40,7 +40,7 @@ class MachinesController extends Controller
     {
         $machine = new Machine($request->validated());
 
-        if (! $machine->save()) return response('Error creating machine.', 500);
+        $machine->save();
 
         return response('Success', 201);
     }
@@ -53,7 +53,7 @@ class MachinesController extends Controller
      */
     public function show(Machine $machine)
     {
-        //
+        return view('machines.show', compact('machine'));
     }
 
     /**

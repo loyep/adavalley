@@ -8,7 +8,12 @@
 
             <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-            <title>{{ config('app.name', 'CMS') }}</title>
+            <title>{{ config('app.name', 'CMMS') }}</title>
+            <style>
+                body {
+                    margin-bottom: 6.5rem;
+                }
+            </style>
     </head>
     <body class="font-sans antialiased text-black leading-tight">
             @include('partials.header')
@@ -19,6 +24,7 @@
 
             @include('partials.footer')
         </div>
+
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
