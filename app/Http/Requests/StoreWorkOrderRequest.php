@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreWorkOrderRequest extends FormRequest
@@ -24,8 +25,9 @@ class StoreWorkOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'machine_id'   => 'exists:machines,id|required',
-            'notes'     => 'nullable|max:255',
+            'machine_id'    => 'required_unless:status,pending|exists:machines,id|nullable',
+            'notes'         => 'nullable|max:255',
+            'status'        => Rule::in(['pending', 'assigned', 'in process', 'complete', 'archived']) . '|nullable',
         ];
     }
 }

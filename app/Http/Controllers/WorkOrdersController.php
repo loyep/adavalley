@@ -56,7 +56,9 @@ class WorkOrdersController extends Controller
      */
     public function show(WorkOrder $workOrder)
     {
-        //
+        $workOrder = $workOrder->with('machine')->first();
+        
+        return view('work-orders.show', compact('workOrder'));
     }
 
     /**

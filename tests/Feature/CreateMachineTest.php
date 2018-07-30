@@ -28,12 +28,25 @@ class CreateMachineTest extends TestCase
     /** @test */
     public function a_machine_must_have_a_unique_number()
     {
-        $machine = factory(Machine::class)->create();
+        $duplicateNumber = (factory(Machine::class)->create())->number;
 
-        $this->post('/machines', ['number' => $machine->number])
-            ->assertSessionHas('errors')
+        $this->post('/machines', ['number' => $duplicateNumber])
+            ->assertSessionHasErrorsIn('number')
             ->assertStatus(302);
 
         $this->assertCount(1, Machine::all());
+    }
+
+    /** @test */
+    public function a_machine_must_have_a_name()
+    {
+        $nullName = null;
+
+        $machine = factory(Machine::class)->make(['name' => $nullName]);
+
+        $this->post('/machines', $machine->toArray())
+            ->assertSessionHasErrorsIn('name');
+
+        $this->assertCount(0, Machine::all());
     }
 }

@@ -12,10 +12,7 @@ class WorkOrderSeeder extends Seeder
      */
     public function run()
     {
-        $machineIds = \App\Machine::all()->pluck('id');
-
-        for ($i = 0; $i < 4; $i++) {
-            factory(WorkOrder::class)->create(['machine_id' => $machineIds->random()]);
-        }  
+        factory(WorkOrder::class, 8)->states('assigned')->create();
+        factory(WorkOrder::class, 2)->create(['status' => 'pending']);
     }
 }

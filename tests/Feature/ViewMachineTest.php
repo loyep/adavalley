@@ -27,7 +27,7 @@ class ViewMachineTest extends TestCase
         $machine = factory(Machine::class)->create();
 
         $response = $this->get('/machines/1')
-            ->assertSee($machine->description)
+            ->assertSee($machine->fresh()->description)
             ->assertSee($machine->name)
             ->assertSee($machine->number);
     }
