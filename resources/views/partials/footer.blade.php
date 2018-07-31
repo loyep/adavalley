@@ -1,7 +1,7 @@
-<footer class="fixed pin-b w-full bg-green-lightest py-8">
+<footer class="fixed pin-b w-full bg-blue-lightest py-8">
     <div class="container mx-auto">
         <div class="flex flex-col-reverse md:flex-row md:items-center md:justify-between px-8">
-            <small class="block text-sm">
+            <small class="block text-sm text-grey-dark">
                 &copy; AVM Equipment
             </small>
             <div class="mb-4 md:mb-0">
