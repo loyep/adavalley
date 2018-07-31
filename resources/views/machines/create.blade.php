@@ -38,6 +38,8 @@
         </div>
     </div>
 
-    <button class="w-1/4 inline-block bg-blue-dark hover:bg-blue rounded p-3 text-sm font-semibold text-white mr-2 mt-4">Create Machine</button>
+    <button type="submit" class="w-1/4 inline-block bg-blue-dark hover:bg-blue rounded p-3 text-sm font-semibold text-white mr-2 mt-4">
+        Create Machine
+    </button>
 </form>
 @endsection

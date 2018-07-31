@@ -3,7 +3,9 @@
 @section('body')
 <div class="bg-white pt-6 pb-8 mb-4 flex flex-col my-2">
 
-    <h1 class="title self-center mb-8">Machinery</h1>
+    <h1 class="title self-center mb-8">
+        <a class="no-underline text-blue-darker" href="{{ route('machines.create') }}">Machinery</a>
+    </h1>
 
     <div class="flex flex-wrap justify-around">
         @forelse($machines as $machine)
