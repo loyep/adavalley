@@ -16,7 +16,7 @@ class CreateMachineTest extends TestCase
         $machine = factory(Machine::class)->make();
 
         $this->post('/machines', $machine->toArray())
-            ->assertStatus(201);
+            ->assertStatus(200);
             
         $this->assertDatabaseHas('machines', [
             'number'        => $machine->number,
@@ -28,11 +28,10 @@ class CreateMachineTest extends TestCase
     /** @test */
     public function a_machine_must_have_a_unique_number()
     {
-        $duplicateNumber = (factory(Machine::class)->create())->number;
+        $machine = factory(Machine::class)->create();
 
-        $this->post('/machines', ['number' => $duplicateNumber])
-            ->assertSessionHasErrorsIn('number')
-            ->assertStatus(302);
+        $this->post('/machines', ['number' => $machine->number])
+            ->assertSessionHasErrorsIn('number');
 
         $this->assertCount(1, Machine::all());
     }

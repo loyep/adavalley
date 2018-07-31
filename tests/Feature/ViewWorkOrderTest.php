@@ -13,22 +13,21 @@ class ViewWorkOrderTest extends TestCase
     /** @test */
     public function a_employee_can_view_all_work_orders()
     {
-        $workOrders = factory(WorkOrder::class, 4)->create();
+        $orders = factory(WorkOrder::class, 3)->create();
  
         $this->get('/work-orders')
-            ->assertSee($workOrders[0]->fresh()->status)
-            ->assertSee($workOrders[1]->fresh()->status)
-            ->assertSee($workOrders[2]->fresh()->status)
-            ->assertSee($workOrders[3]->fresh()->status);
+            ->assertSeeText($orders[0]->status)
+            ->assertSeeText($orders[1]->status)
+            ->assertSeeText($orders[2]->status);
     }
 
     /** @test */
     public function a_employee_can_view_a_single_work_order()
     {
-        $workOrder = factory(WorkOrder::class)->states('assigned')->create();
+        $order = factory(WorkOrder::class)->states('assigned')->create();
 
-        $this->get('/work-orders/1')
-            ->assertSessionHasNoErrors()
-            ->assertSeeText($workOrder->status);
+        $this->get("/work-orders/{$order->id}")
+            ->assertStatus(200)
+            ->assertSeeText($order->status);
     }
 }
