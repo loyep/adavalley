@@ -53,15 +53,10 @@ class WorkOrdersController extends Controller
 
         $v->sometimes('status', 'required|' . Rule::in(['assigned', 'in process', 'complete', 'archived']), function ($input) {
             return $input->machine_id > 0;
-        });
-
-        if ($v->fails()) {
-            return redirect('work-orders.create')
-                        ->withErrors($v)
-                        ->withInput();
-        }
+        })->validate();
 
         $workOrder = new WorkOrder($v->valid());
+
         $workOrder->save();
         
         return view('work-orders.show', compact('workOrder'));
@@ -75,8 +70,6 @@ class WorkOrdersController extends Controller
      */
     public function show(WorkOrder $workOrder)
     {
-        $workOrder = $workOrder->with('machine')->first();
-        
         return view('work-orders.show', compact('workOrder'));
     }
 
