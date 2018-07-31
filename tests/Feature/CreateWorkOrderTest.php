@@ -24,7 +24,7 @@ class CreateWorkOrderTest extends TestCase
     /** @test */
     public function a_work_order_will_default_to_a_pending_status()
     {
-        $workOrder = factory(WorkOrder::class)->create();
+        $workOrder = factory(WorkOrder::class)->make();
 
         $this->post('/work-orders', $workOrder->toArray())
             ->assertSessionHasNoErrors();

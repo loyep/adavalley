@@ -33,7 +33,7 @@ class MachinesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreMachineRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMachineRequest $request)
@@ -42,7 +42,7 @@ class MachinesController extends Controller
 
         $machine->save();
 
-        return response('Success', 201);
+        return view('machines.show', compact('machine'));
     }
 
     /**
