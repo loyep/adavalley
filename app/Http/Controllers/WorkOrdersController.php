@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Machine;
 use App\WorkOrder;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Validator;
 use App\Http\Requests\StoreWorkOrderRequest;
 
 class WorkOrdersController extends Controller
@@ -39,13 +41,30 @@ class WorkOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreWorkOrderRequest $request)
+    public function store(Request $request)
     {
-        $workOrder = new WorkOrder($request->validated());
+        $v = Validator::make($request->all(), [
+            'notes' => 'nullable|string|max:255',
+        ]);
 
-        if (!$workOrder->save()) return response('Error creating work order.', 500);
+        $v->sometimes('machine_id', 'required|exists:machines,id', function ($input) {
+            return in_array($input->status, ['assigned', 'in process', 'complete', 'archived']);
+        });
 
-        return response('Success', 201);
+        $v->sometimes('status', 'required|' . Rule::in(['assigned', 'in process', 'complete', 'archived']), function ($input) {
+            return $input->machine_id > 0;
+        });
+
+        if ($v->fails()) {
+            return redirect('work-orders.create')
+                        ->withErrors($v)
+                        ->withInput();
+        }
+
+        $workOrder = new WorkOrder($v->valid());
+        $workOrder->save();
+        
+        return view('work-orders.show', compact('workOrder'));
     }
 
     /**
