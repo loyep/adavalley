@@ -9,14 +9,10 @@ $factory->define(WorkOrder::class, function (Faker $faker) {
 });
 
 $factory->state(WorkOrder::class, 'assigned', function ($faker) {
+    $machineId = factory(Machine::class)->create()->id;
     return [
         'status' => 'assigned',
-        'notes' => 'A place to give maintanence personel a description of what is wrong. ' . $faker->sentence(),
+        'notes' => 'any notes you wanna put, to help the mechanic',
+        'machine_id' => $machineId,
     ];
-});
-
-$factory->afterMakingState(WorkOrder::class, 'assigned', function ($order, $faker) {
-    $machine = factory(Machine::class)->create();
-
-    $order->machine()->associate($machine);
 });

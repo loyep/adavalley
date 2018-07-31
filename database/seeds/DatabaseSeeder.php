@@ -12,11 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(WorkOrderSeeder::class);
-        for ($i = 0; $i < 8; $i++) {
-            factory(WorkOrder::class)->states('assigned')->create();
-        }
-    
-        factory(WorkOrder::class, 2)->create();
+        $this->call(WorkOrderSeeder::class);
     }
 }
