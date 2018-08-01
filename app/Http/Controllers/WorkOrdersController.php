@@ -43,9 +43,14 @@ class WorkOrdersController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'machine_id.required' => 'A machine is required if the status is NOT pending.',
+            'machine_id.exists' => 'That\'s wierd. The machine selected was not found in the database.',
+        ];
+
         $v = Validator::make($request->all(), [
             'notes' => 'nullable|string|max:255',
-        ]);
+        ], $messages);
 
         $v->sometimes('machine_id', 'required|exists:machines,id', function ($input) {
             return in_array($input->status, ['assigned', 'in process', 'complete', 'archived']);

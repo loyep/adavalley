@@ -12,7 +12,7 @@ class WorkOrderTest extends TestCase
     use RefreshDatabase;
     
     /**
-     * A WorkOrder is associated with a Machine.
+     * A WorkOrder can be associated with a Machine.
      *
      * @return void
      */

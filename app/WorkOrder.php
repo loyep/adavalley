@@ -15,7 +15,7 @@ class WorkOrder extends Model
     public function machine()
     {
         return $this->belongsTo(Machine::class)->withDefault([
-            'name' => 'MACHINELESS',
+            'name' => '-----NA-----',
         ]);
     }
 }
