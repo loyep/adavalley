@@ -1,26 +1,59 @@
 @extends('layouts.app')
 
 @section('body')
-<div class="bg-white shadow-md rounded border border-gray-light pt-6 pb-8 mb-4 flex flex-wrap justify-around my-2">
+<div class="flex border border-grey-darker p-2">
+    Toolbar for actions
+</div>
 
-    <div class="flex flex-col justify-between h-full">
-        <!-- img -->
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl text-black mb-2">{{ $machine->name }}</div>
+<div class="bg-white px-4 pt-6 pb-8 mb-4 flex flex-col my-2 text-sm">
 
-            <h1 class="title text-base">#{{ $machine->number }}</h1>
+    <div class="flex flex-col md:flex-row">
 
-            <h2 class="subtitle text-base">{{ $machine->description }}</h2>
+        <div class="w-full md:w-1/2">
+
+            <div class="flex flex-col w-full mt-2">
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset Id:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $machine->id }}</div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Creation Date:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $machine->created_at->format('m/d/Y') }}</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col w-full mt-2">
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset Type:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">Machine</div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset #:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $machine->number }}</div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset Name:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $machine->name }}</div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset Desc:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $machine->description }}</div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="pin-b px-6 py-4 flex justify-between">
-            <div>
-                <button class="inline-block bg-blue hover:bg-blue-dark rounded-full px-3 py-2 text-sm font-semibold text-white mr-2">History</button>
+        <div class="w-full md:w-1/2">
+
+            <div class="flex flex-col w-full mt-2">
+                <div class="flex justify-center">
+                    <div class="w-1/4 text-right p-1">Asset Parts:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">No parts associated with this asset</div>
+                </div>
             </div>
-            <div>
-                <button class="inline-block bg-red hover:bg-red-dark rounded-full px-3 py-2 text-sm font-semibold text-white">Delete</button>
-            </div>
+
         </div>
+
     </div>
 
 </div>

@@ -3,13 +3,13 @@
 @section('body')
 <div class="bg-white shadow-md rounded border border-gray-light px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
 
-    <form method="POST" action="{{ route('work-orders.store') }}" class="w-1/4 px-3">
+    <form method="POST" action="{{ route('work-orders.store') }}" class="px-3">
         {{ csrf_field() }}
 
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="machine_id">
-            Machine:
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="machine_id">
+            Machine
         </label>
-        <div class="relative mb-6">
+        <div class="relative">
             <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="machine_id" name="machine_id">
                 <option value="">Select A Machine</option>
 
@@ -25,16 +25,18 @@
             </div>
         </div>
 
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="status">
-            Status:
+        <p class="text-red">{{ $errors->first('machine_id') }}</p>
+
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="status">
+            Status
         </label>
-        <div class="relative mb-6">
+        <div class="relative">
             <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="status" name="status">
-                <option value="pending">Pending</option>
-                <option value="assigned">Assigned</option>
-                <option value="in process">In Process</option>
-                <option value="complete">Complete</option>
-                <option value="archived">Archived</option>
+                <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="assigned" {{ old('status') == 'assigned' ? 'selected' : '' }}>Assigned</option>
+                <option value="in process" {{ old('status') == 'in process' ? 'selected' : '' }}>In Process</option>
+                <option value="complete" {{ old('status') == 'complete' ? 'selected' : '' }}>Complete</option>
+                <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>Archived</option>
             </select>
 
             <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
@@ -42,7 +44,24 @@
             </div>
         </div>
 
-        <button type="submit" class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded mt-4">
+        <p class="text-red">{{ $errors->first('status') }}</p>
+
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="notes">
+            Note
+        </label>
+        <div>
+            <input 
+                class="appearance-none block w-full bg-grey-lighter border border-grey-lighter rounded py-3 px-4" 
+                id="notes" 
+                name="notes" 
+                type="text" 
+                value="{{ old('notes') }}"
+            >
+        </div>  
+        
+        <p class="text-red">{{ $errors->first('notes') }}</p>
+
+        <button class="w-1/4 inline-block bg-blue-dark hover:bg-blue rounded p-3 text-sm font-semibold text-white mr-2 mt-6" type="submit">
             Create Work Order
         </button>
     </form>
