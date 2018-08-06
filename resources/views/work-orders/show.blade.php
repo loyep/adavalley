@@ -58,14 +58,20 @@
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">WO Type:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">PM</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">Preventive Maintenance</div>
                 </div>
             </div>
 
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
-                    <div class="w-1/4 text-right p-1">Asset ID:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $workOrder->asset->id }}</div>
+                    <div class="w-1/4 text-right p-1">Asset Number:</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">
+                        @if($workOrder->asset->id)
+                        <a class="no-underline hover:underline" href="{{ route('assets.show', $workOrder->asset->id) }}">{{ $workOrder->asset->number }}</a>
+                        @else
+                        No asset assigned.
+                        @endif
+                    </div>
                 </div>
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset Desc:</div>
@@ -84,7 +90,7 @@
                 </div>
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Assign To:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">Jordan Rozeboom</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $workOrder->employee->name }}</div>
                 </div>
             </div>
 

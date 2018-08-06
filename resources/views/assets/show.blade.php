@@ -48,7 +48,7 @@
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset Type:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">Asset</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">Machine</div>
                 </div>
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset #:</div>
@@ -70,8 +70,19 @@
 
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
-                    <div class="w-1/4 text-right p-1">Asset Parts:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">No parts associated with this asset</div>
+                    <div class="w-1/4 text-right p-1">Parts:</div>
+
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">
+                        <ul class="list-reset -mt-3">
+                            @forelse($asset->parts as $part)
+                            <li class="mt-3">
+                                <a href="{{ route('parts.show', $part->id) }}">{{ $part->number }}</a>
+                            </li>
+                            @empty
+                                <div class="w-3/4 text-left bg-grey-lighter p-1">There are no parts associated with this asset.</div>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
             </div>
 

@@ -19,6 +19,9 @@
                 <a href="{{ route('assets.index') }}" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-white hover:text-blue-light mr-4">
                     Assets
                 </a>
+                <a href="{{ route('parts.index') }}" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-white hover:text-blue-light mr-4">
+                    Parts
+                </a>
             </div>
             <div>
                 <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-blue-light hover:text-blue-light mt-4 lg:mt-0">Sign In</a>
