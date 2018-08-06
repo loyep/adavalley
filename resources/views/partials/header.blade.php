@@ -16,8 +16,8 @@
                 <a href="{{ route('work-orders.index') }}" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-white hover:text-blue-light mr-4">
                     Work Orders
                 </a>
-                <a href="{{ route('machines.index') }}" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-white hover:text-blue-light mr-4">
-                    Machinery
+                <a href="{{ route('assets.index') }}" class="no-underline block mt-4 lg:inline-block lg:mt-0 text-white hover:text-blue-light mr-4">
+                    Assets
                 </a>
             </div>
             <div>

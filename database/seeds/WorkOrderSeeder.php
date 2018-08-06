@@ -1,6 +1,6 @@
 <?php
 
-use App\Machine;
+use App\Asset;
 use App\WorkOrder;
 use Illuminate\Database\Seeder;
 

@@ -6,17 +6,17 @@
     <form method="POST" action="{{ route('work-orders.store') }}" class="px-3">
         {{ csrf_field() }}
 
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="machine_id">
-            Machine
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="asset_id">
+            Asset
         </label>
         <div class="relative">
-            <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="machine_id" name="machine_id">
-                <option value="">Select A Machine</option>
+            <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="asset_id" name="asset_id">
+                <option value="">Select A Asset</option>
 
-                @forelse($machines as $machine)
-                <option value="{{ $machine->id }}">{{ $machine->name }}</option>
+                @forelse($assets as $asset)
+                <option value="{{ $asset->id }}">{{ $asset->name }}</option>
                 @empty
-                <option value="">No Machines In Database</option>
+                <option value="">No Assets In Database</option>
                 @endforelse
             </select>
 
@@ -25,18 +25,18 @@
             </div>
         </div>
 
-        <p class="text-red">{{ $errors->first('machine_id') }}</p>
+        <p class="text-red">{{ $errors->first('asset_id') }}</p>
 
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="status">
             Status
         </label>
         <div class="relative">
             <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="status" name="status">
-                <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="assigned" {{ old('status') == 'assigned' ? 'selected' : '' }}>Assigned</option>
-                <option value="in process" {{ old('status') == 'in process' ? 'selected' : '' }}>In Process</option>
-                <option value="complete" {{ old('status') == 'complete' ? 'selected' : '' }}>Complete</option>
-                <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>Archived</option>
+                <option value="Pending" {{ old('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                <option value="Assigned" {{ old('status') == 'Assigned' ? 'selected' : '' }}>Assigned</option>
+                <option value="In Process" {{ old('status') == 'In Process' ? 'selected' : '' }}>In Process</option>
+                <option value="Complete" {{ old('status') == 'Complete' ? 'selected' : '' }}>Complete</option>
+                <option value="Archived" {{ old('status') == 'Archived' ? 'selected' : '' }}>Archived</option>
             </select>
 
             <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">

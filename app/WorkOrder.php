@@ -2,19 +2,19 @@
 
 namespace App;
 
-use App\Machine;
+use App\Asset;
 use Illuminate\Database\Eloquent\Model;
 
 class WorkOrder extends Model
 {
-    protected $fillable = ['status', 'notes', 'machine_id'];
+    protected $fillable = ['status', 'notes', 'asset_id'];
 
     /**
-     * Get the Machine record associated with the WorkOrder.
+     * Get the Asset record associated with the WorkOrder.
      */
-    public function machine()
+    public function asset()
     {
-        return $this->belongsTo(Machine::class)->withDefault([
+        return $this->belongsTo(Asset::class)->withDefault([
             'name' => '-----NA-----',
         ]);
     }

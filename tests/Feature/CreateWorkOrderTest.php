@@ -16,15 +16,15 @@ class CreateWorkOrderTest extends TestCase
         $this->post('/work-orders', [])
             ->assertStatus(200);
 
-        $this->assertDatabaseHas('work_orders', ['id' => 1, 'status' => 'pending']);
+        $this->assertDatabaseHas('work_orders', ['id' => 1, 'status' => 'Pending']);
     }
 
     /** @test */
-    public function a_work_order_with_a_status_other_than_pending_must_be_associated_with_a_machine()
+    public function a_work_order_with_a_status_other_than_pending_must_be_associated_with_a_asset()
     {
-        $this->post('/work-orders', ['status' => 'complete'])
-            ->assertSessionHasErrorsIn('machine_id');
+        $this->post('/work-orders', ['status' => 'Complete'])
+            ->assertSessionHasErrorsIn('asset_id');
 
-        $this->assertDatabaseMissing('work_orders', ['id' => 1, 'status' => ['complete']]);
+        $this->assertDatabaseMissing('work_orders', ['id' => 1, 'status' => ['Complete']]);
     }
 }

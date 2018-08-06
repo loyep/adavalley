@@ -11,7 +11,7 @@ class ViewWorkOrderTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_employee_can_view_all_work_orders()
+    public function an_employee_can_view_all_work_orders()
     {
         $orders = factory(WorkOrder::class, 3)->create();
  
@@ -22,8 +22,10 @@ class ViewWorkOrderTest extends TestCase
     }
 
     /** @test */
-    public function a_employee_can_view_a_single_work_order()
+    public function an_employee_can_view_a_single_work_order()
     {
+        $this->withoutExceptionHandling();
+
         $order = factory(WorkOrder::class)->states('assigned')->create();
 
         $this->get("/work-orders/{$order->id}")

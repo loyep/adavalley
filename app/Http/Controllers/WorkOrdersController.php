@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Machine;
+use Validator;
+use App\Asset;
 use App\WorkOrder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Validator;
 use App\Http\Requests\StoreWorkOrderRequest;
 
 class WorkOrdersController extends Controller
@@ -30,9 +30,9 @@ class WorkOrdersController extends Controller
      */
     public function create()
     {
-        $machines = Machine::all();
+        $assets = Asset::all();
 
-        return view('work-orders.create', compact('machines'));
+        return view('work-orders.create', compact('assets'));
     }
 
     /**
@@ -44,20 +44,20 @@ class WorkOrdersController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'machine_id.required' => 'A machine is required if the status is NOT pending.',
-            'machine_id.exists' => 'That\'s wierd. The machine selected was not found in the database.',
+            'asset_id.required' => 'A asset is required if the status is NOT pending.',
+            'asset_id.exists' => 'That\'s wierd. The asset selected was not found in the database.',
         ];
 
         $v = Validator::make($request->all(), [
             'notes' => 'nullable|string|max:255',
         ], $messages);
 
-        $v->sometimes('machine_id', 'required|exists:machines,id', function ($input) {
-            return in_array($input->status, ['assigned', 'in process', 'complete', 'archived']);
+        $v->sometimes('asset_id', 'required|exists:assets,id', function ($input) {
+            return in_array($input->status, ['Assigned', 'In Process', 'Complete', 'Archived']);
         });
 
-        $v->sometimes('status', 'required|' . Rule::in(['assigned', 'in process', 'complete', 'archived']), function ($input) {
-            return $input->machine_id > 0;
+        $v->sometimes('status', 'required|' . Rule::in(['Assigned', 'In Process', 'Complete', 'Archived']), function ($input) {
+            return $input->asset_id > 0;
         })->validate();
 
         $workOrder = new WorkOrder($v->valid());

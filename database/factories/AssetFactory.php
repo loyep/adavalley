@@ -1,9 +1,9 @@
 <?php
 
-use App\Machine;
+use App\Asset;
 use Faker\Generator as Faker;
 
-$factory->define(Machine::class, function (Faker $faker) {
+$factory->define(Asset::class, function (Faker $faker) {
     return [
         'number' => $faker->ean8,
         'name' => $faker->name,

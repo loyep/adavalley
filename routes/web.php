@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::resource('/machines', 'MachinesController');
+Route::resource('/assets', 'AssetsController');
 
 Route::resource('/work-orders', 'WorkOrdersController');

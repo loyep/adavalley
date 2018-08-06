@@ -15,11 +15,11 @@ class CreateWorkOrdersTable extends Migration
     {
         Schema::create('work_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('status', ['pending', 'assigned', 'in process', 'complete'])->default('pending');
+            $table->enum('status', ['Pending', 'Assigned', 'In Process', 'Complete'])->default('Pending');
             $table->string('notes', 255)->nullable();
             
-            $table->unsignedInteger('machine_id')->nullable();
-            $table->foreign('machine_id')->references('id')->on('machines');
+            $table->unsignedInteger('asset_id')->nullable();
+            $table->foreign('asset_id')->references('id')->on('assets');
             $table->timestamps();
         });
     }

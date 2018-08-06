@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Machine;
+use App\Asset;
 use App\WorkOrder;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,14 +12,14 @@ class WorkOrderTest extends TestCase
     use RefreshDatabase;
     
     /**
-     * A WorkOrder can be associated with a Machine.
+     * A WorkOrder can be associated with a Asset.
      *
      * @return void
      */
-    public function testMachine()
+    public function testAsset()
     {
         $workOrder = factory(WorkOrder::class)->states('assigned')->create();
         
-        $this->assertInstanceOf(Machine::class, $workOrder->machine);
+        $this->assertInstanceOf(Asset::class, $workOrder->asset);
     }
 }

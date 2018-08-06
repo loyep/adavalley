@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMachineRequest extends FormRequest
+class StoreAssetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreMachineRequest extends FormRequest
     public function rules()
     {
         return [
-            'number'        => 'required|unique:machines,number|alpha_num',
+            'number'        => 'required|unique:assets,number|alpha_num',
             'name'          => 'required|max:40',
             'description'   => 'max:255|nullable',
         ];

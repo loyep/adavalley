@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Machine;
+use App\Asset;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreMachineRequest;
+use App\Http\Requests\StoreAssetRequest;
 
-class MachinesController extends Controller
+class AssetsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class MachinesController extends Controller
      */
     public function index()
     {
-        $machines = Machine::all();
+        $assets = Asset::all();
 
-        return view('machines.index', compact('machines'));
+        return view('assets.index', compact('assets'));
     }
 
     /**
@@ -27,42 +27,42 @@ class MachinesController extends Controller
      */
     public function create()
     {
-        return view('machines.create');
+        return view('assets.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\StoreMachineRequest  $request
+     * @param  \App\Http\Requests\StoreAssetRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMachineRequest $request)
+    public function store(StoreAssetRequest $request)
     {
-        $machine = new Machine($request->validated());
+        $asset = new Asset($request->validated());
 
-        $machine->save();
+        $asset->save();
 
-        return view('machines.show', compact('machine'));
+        return view('assets.show', compact('asset'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Machine  $machine
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Machine $machine)
+    public function show(Asset $asset)
     {
-        return view('machines.show', compact('machine'));
+        return view('assets.show', compact('asset'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Machine  $machine
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Machine $machine)
+    public function edit(Asset $asset)
     {
         //
     }
@@ -71,10 +71,10 @@ class MachinesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Machine  $machine
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Machine $machine)
+    public function update(Request $request, Asset $asset)
     {
         //
     }
@@ -82,10 +82,10 @@ class MachinesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Machine  $machine
+     * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Machine $machine)
+    public function destroy(Asset $asset)
     {
         //
     }

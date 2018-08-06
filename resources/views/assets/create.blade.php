@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body')
-<form method="POST" action="{{ route('machines.store') }}" class="bg-white shadow-md rounded border border-gray-light px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+<form method="POST" action="{{ route('assets.store') }}" class="bg-white shadow-md rounded border border-gray-light px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
     {{ csrf_field() }}
     
     <div class="-mx-3 md:flex mt-6">
@@ -55,7 +55,7 @@
     </div>
 
     <button type="submit" class="w-1/4 inline-block bg-blue-dark hover:bg-blue rounded p-3 text-sm font-semibold text-white mr-2 mt-6">
-        Create Machine
+        Create Asset
     </button>
 </form>
 @endsection

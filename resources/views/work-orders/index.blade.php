@@ -22,7 +22,7 @@
                     <a class="no-underline" href="{{ route('work-orders.show', $order->id) }}">{{ $order->id }}</a>
                 </td>
                 <td class="border border-black border-2 p-1">{{ $order->status }}</td>
-                <td class="border border-black border-2 p-1">{{ $order->machine->name }}</td>
+                <td class="border border-black border-2 p-1">{{ $order->asset->name }}</td>
                 <td class="border border-black border-2 p-1">{{ $order->notes }}</td>
             </tr>
             @empty
