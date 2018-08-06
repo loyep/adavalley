@@ -15,7 +15,7 @@ class ViewWorkOrderTest extends TestCase
     {
         $orders = factory(WorkOrder::class, 3)->create();
  
-        $this->get('/work-orders')
+        $this->get("/work-orders")
             ->assertSeeText($orders[0]->status)
             ->assertSeeText($orders[1]->status)
             ->assertSeeText($orders[2]->status);
@@ -24,11 +24,9 @@ class ViewWorkOrderTest extends TestCase
     /** @test */
     public function an_employee_can_view_a_single_work_order()
     {
-        $this->withoutExceptionHandling();
+        $order = factory(WorkOrder::class)->create();
 
-        $order = factory(WorkOrder::class)->states('assigned')->create();
-
-        $this->get("/work-orders/{$order->id}")
+        $this->get("/work-orders/$order->id")
             ->assertStatus(200)
             ->assertSeeText($order->status);
     }

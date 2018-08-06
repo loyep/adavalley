@@ -11,7 +11,7 @@ class DeleteWorkOrderTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function an_employee_can_delete_a_pending_work_order()
+    public function an_employee_can_delete_a_work_order()
     {
         $order = factory(WorkOrder::class)->create();
 

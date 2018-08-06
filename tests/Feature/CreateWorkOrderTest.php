@@ -12,8 +12,10 @@ class CreateWorkOrderTest extends TestCase
 
     /** @test */
     public function a_work_order_can_be_created_in_database()
-    {
-        $this->post('/work-orders', [])
+    {        
+        $order = factory(WorkOrder::class)->make();
+
+        $this->post('/work-orders', $order->toArray())
             ->assertStatus(200);
 
         $this->assertDatabaseHas('work_orders', ['id' => 1, 'status' => 'Pending']);

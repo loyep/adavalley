@@ -15,10 +15,10 @@ class ViewAssetTest extends TestCase
     {
         $assets = factory(Asset::class, 3)->create();
 
-        $this->get('/assets')
+        $this->get("/assets")
             ->assertSee($assets[0]->name)
-            ->assertSee($assets[1]->description)
-            ->assertSee($assets[2]->number);
+            ->assertSee($assets[1]->number)
+            ->assertSee($assets[2]->description);
     }
 
     /** @test */
@@ -26,9 +26,9 @@ class ViewAssetTest extends TestCase
     {
         $asset = factory(Asset::class)->create();
 
-        $this->get('/assets/1')
-            ->assertSee($asset->description)
+        $this->get("/assets/$asset->id")
             ->assertSee($asset->name)
-            ->assertSee($asset->number);
+            ->assertSee($asset->number)
+            ->assertSee($asset->description);
     }
 }
