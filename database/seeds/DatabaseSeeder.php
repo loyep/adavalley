@@ -1,6 +1,5 @@
 <?php
 
-use App\WorkOrder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(WorkOrderSeeder::class);
+        $this->call(CMMSSeeder::class);
     }
 }
