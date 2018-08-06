@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::resource('/assets', 'AssetsController');
 
 Route::resource('/work-orders', 'WorkOrdersController');
+
+Route::resource('/parts', 'PartsController');
