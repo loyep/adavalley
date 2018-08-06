@@ -50,6 +50,7 @@ class WorkOrdersController extends Controller
 
         $v = Validator::make($request->all(), [
             'notes' => 'nullable|string|max:255',
+            'employee_id' => 'nullable',
         ], $messages);
 
         $v->sometimes('asset_id', 'required|exists:assets,id', function ($input) {

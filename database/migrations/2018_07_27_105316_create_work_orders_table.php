@@ -20,6 +20,10 @@ class CreateWorkOrdersTable extends Migration
             
             $table->unsignedInteger('asset_id')->nullable();
             $table->foreign('asset_id')->references('id')->on('assets');
+
+            $table->unsignedInteger('employee_id')->nullable();
+            $table->foreign('employee_id')->references('id')->on('employee');
+            
             $table->timestamps();
         });
     }
