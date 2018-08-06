@@ -3,10 +3,16 @@
 @section('body')
 <ul class="flex list-reset my-1">
     <li class="border border-black rounded">
-        <a class="no-underline text-center block border border-white rounded hover:border-grey-lighter text-black hover:bg-grey-lighter py-2 px-4" href="#">Edit</a>
+        <a class="no-underline text-center block border border-white rounded hover:border-grey-lighter text-black hover:bg-grey-lighter py-2 px-4" href="{{ route('work-orders.edit', $workOrder->id) }}">Edit</a>
     </li>
     <li class="border border-black rounded border-l-0">
-        <a class="no-underline text-center text-black block rounded hover:border-grey-lighter hover:bg-grey-lighter py-2 px-4" href="#">Delete</a>
+        <a class="no-underline text-center block border border-white rounded hover:border-grey-lighter text-black hover:bg-grey-lighter py-2 px-4" href="#" onclick="document.forms.delete.submit()">
+            <form name="delete" action="{{ route('work-orders.destroy', [$workOrder->id]) }}" method="POST">
+                @method('delete')
+                @csrf
+                <button class="btn btn-default" type="submit">Delete</button>
+            </form>
+        </a>
     </li>
     <li class="relative border border-black rounded border-l-0">
         <div role="button" class="inline-block select-none">

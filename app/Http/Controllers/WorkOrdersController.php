@@ -86,7 +86,7 @@ class WorkOrdersController extends Controller
      */
     public function edit(WorkOrder $workOrder)
     {
-        //
+        return view('work-orders.show', compact('workOrder'));
     }
 
     /**
@@ -109,6 +109,8 @@ class WorkOrdersController extends Controller
      */
     public function destroy(WorkOrder $workOrder)
     {
-        //
+        if (! $workOrder->delete()) return view('work-orders.show', compact('workOrder'));
+
+        return redirect()->action('WorkOrdersController@index');
     }
 }
