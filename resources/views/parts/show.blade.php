@@ -9,22 +9,13 @@
         <a class="no-underline text-center text-black block rounded hover:border-grey-lighter hover:bg-grey-lighter py-2 px-4" href="#">Delete</a>
     </li>
     <li class="relative border border-black rounded border-l-0">
-        <div role="button" class="inline-block select-none">
-            <span class="appearance-none flex items-center inline-block text-black hover:bg-grey-lighter py-2 px-4 rounded">
-                <span class="mr-1">Actions</span>
-
-                <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-            </span>
-        </div>
-        <div class="absolute pin-l mt-px hidden">
-            <div class="bg-white shadow rounded border overflow-hidden">
-                <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest bg-white hover:text-white hover:bg-blue whitespace-no-wrap">Action</a>
-                <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest bg-white hover:text-white hover:bg-blue whitespace-no-wrap">Another action</a>
-                <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest bg-white hover:text-white hover:bg-blue whitespace-no-wrap">Something else here</a>
+        <dropdown-link>
+            <div slot="link">Actions</div>
+            
+            <div slot="dropdown">
+                <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest bg-white hover:text-white hover:bg-blue whitespace-no-wrap">Add To Asset</a>
             </div>
-        </div>
+        </dropdown-link>
     </li>
 </ul>
 
