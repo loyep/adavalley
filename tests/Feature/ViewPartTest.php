@@ -39,7 +39,7 @@ class ViewPartTest extends TestCase
         $asset = factory(Asset::class)->create();
         $parts = factory(Part::class, 2)->create();
 
-        $asset->parts()->saveMany($parts);
+        $asset->addParts($parts);
 
         $this->get("/assets/$asset->id")
             ->assertSee($asset->parts()->latest()->first()->number)
