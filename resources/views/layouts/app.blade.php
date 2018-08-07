@@ -13,7 +13,7 @@
     <body class="font-sans antialiased text-black leading-tight flex flex-col min-h-screen">
         @include('partials.header')
 
-        <div id="app" class="container mx-auto flex-1">
+        <div id="app" class="container mx-auto flex-1" v-cloak>
             @yield('body')
         </div>
 
