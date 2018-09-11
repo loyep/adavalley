@@ -22,6 +22,7 @@ class CreatePartsTable extends Migration
             $table->unsignedInteger('asset_id')->nullable();
             $table->foreign('asset_id')->references('id')->on('assets');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

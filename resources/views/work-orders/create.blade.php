@@ -4,7 +4,7 @@
 <div class="bg-white shadow-md rounded border border-gray-light px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
 
     <form method="POST" action="{{ route('work-orders.store') }}" class="px-3">
-        {{ csrf_field() }}
+        @csrf
 
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mt-6" for="asset_id">
             Asset

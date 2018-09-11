@@ -6,13 +6,17 @@ use App\Part;
 use App\WorkOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Asset extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'number',
         'name',
         'description',
+        'type',
     ];
 
     /**
@@ -67,5 +71,31 @@ class Asset extends Model
         $this->parts()->saveMany($parts);
 
         return $this;
+    }
+
+    /**
+     * Deactivates the Asset
+     * 
+     * @param integer|null
+     * 
+     * @return boolean
+     */
+    public function deactivate($id = null)
+    {
+        if (is_null($id)) $id = $this->id;
+
+        return self::destroy($id);
+    }
+
+    /**
+     * Activates the Asset
+     * 
+     * @return boolean
+     */
+    public function activate($id = null)
+    {
+        if (is_null($id)) $id = $this->id;
+
+        return self::restore($id);
     }
 }

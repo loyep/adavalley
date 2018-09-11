@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Asset;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssetRequest;
+use App\Http\Requests\UpdateAssetRequest;
 
 class AssetsController extends Controller
 {
@@ -15,7 +16,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        $assets = Asset::all();
+        $assets = Asset::withTrashed()->get();
 
         return view('assets.index', compact('assets'));
     }
@@ -64,7 +65,7 @@ class AssetsController extends Controller
      */
     public function edit(Asset $asset)
     {
-        //
+        return view('assets.edit', compact('asset'));
     }
 
     /**
@@ -74,9 +75,13 @@ class AssetsController extends Controller
      * @param  \App\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asset $asset)
+    public function update(UpdateAssetRequest $request, Asset $asset)
     {
-        //
+        $data = $request->validated();
+
+        $asset->fill($data)->save();
+
+        return view('assets.show', compact('asset'));
     }
 
     /**
@@ -87,6 +92,11 @@ class AssetsController extends Controller
      */
     public function destroy(Asset $asset)
     {
-        //
+        if (! $asset->deactivate()) {
+            return view('assets.edit', compact('asset'))
+                    ->withErrors(['delete' => 'Could not delete the asset!']);
+        }
+
+        return redirect('assets')->with('status', 'Asset Deactivated');
     }
 }

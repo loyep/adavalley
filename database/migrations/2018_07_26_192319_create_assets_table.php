@@ -18,6 +18,9 @@ class CreateAssetsTable extends Migration
             $table->string('number');
             $table->string('name', 40)->nullable();
             $table->string('description')->nullable();
+            $table->enum('type', ['Machine', 'Part']);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

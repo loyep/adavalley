@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAssetRequest extends FormRequest
@@ -24,9 +25,10 @@ class StoreAssetRequest extends FormRequest
     public function rules()
     {
         return [
-            'number'        => 'required|unique:assets,number|alpha_num',
+            'number'        => 'required|alpha_num|unique:assets,number',
             'name'          => 'required|max:40',
-            'description'   => 'max:255|nullable',
+            'description'   => 'sometimes|max:255|nullable',
+            'type'          => 'required|' . Rule::in(['Machine', 'Part']),
         ];
     }
 }

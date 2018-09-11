@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Part;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePartRequest;
+use App\Http\Requests\UpdatePartRequest;
 
 class PartsController extends Controller
 {
@@ -62,7 +63,7 @@ class PartsController extends Controller
      */
     public function edit(Part $part)
     {
-        //
+        return view('parts.edit', compact('part'));
     }
 
     /**
@@ -72,9 +73,13 @@ class PartsController extends Controller
      * @param  \App\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Part $part)
+    public function update(UpdatePartRequest $request, Part $part)
     {
-        //
+        $data = $request->validated();
+
+        $part->fill($data)->save();
+
+        return view('parts.show', compact('part'));
     }
 
     /**
@@ -85,6 +90,6 @@ class PartsController extends Controller
      */
     public function destroy(Part $part)
     {
-        //
+        $part->deactivate();
     }
 }

@@ -39,7 +39,7 @@
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset Type:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">Part</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $part->type() }}</div>
                 </div>
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Part #:</div>

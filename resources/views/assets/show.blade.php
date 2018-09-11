@@ -2,18 +2,23 @@
 
 @section('body')
 <ul class="flex list-reset my-1">
-    <li class="border border-black rounded">
-        <a class="no-underline text-center block border border-white rounded hover:border-grey-lighter text-black hover:bg-grey-lighter py-2 px-4" href="#">Edit</a>
+    <li class="border border-black mr-1 rounded bg-yellow-lighter">
+        <a href="{{ route('assets.edit', $asset->id) }}" class="no-underline text-center text-black block rounded hover:bg-grey-lighter py-2 px-4">Edit</a>
     </li>
-    <li class="border border-black rounded border-l-0">
-        <a class="no-underline text-center text-black block rounded hover:border-grey-lighter hover:bg-grey-lighter py-2 px-4" href="#">Delete</a>
-    </li>
-    <li class="relative border border-black rounded border-l-0">
+    <li class="relative border border-black mr-1 rounded bg-blue-lighter">
         <dropdown-link>
             <div slot="link">Actions</div>
             
             <div slot="dropdown">
-                <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest bg-white hover:text-white hover:bg-blue whitespace-no-wrap">Add Parts</a>
+                <ul class="list-reset">
+                    <li>
+                        <a href="#" class="no-underline block px-4 py-3 border-b text-grey-darkest hover:bg-blue-lightest hover:text-black whitespace-no-wrap">Add Parts</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('assets.destroy', $asset->id) }}" class="no-underline block px-4 py-3 border-b text-grey-darkest hover:bg-red-lightest hover:text-black whitespace-no-wrap">Delete</a>
+                    </li>
+                </ul>
+
             </div>
         </dropdown-link>
     </li>
@@ -39,7 +44,7 @@
             <div class="flex flex-col w-full mt-2">
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset Type:</div>
-                    <div class="w-3/4 text-left bg-grey-lighter p-1">Machine</div>
+                    <div class="w-3/4 text-left bg-grey-lighter p-1">{{ $asset->type }}</div>
                 </div>
                 <div class="flex justify-center">
                     <div class="w-1/4 text-right p-1">Asset #:</div>
@@ -70,7 +75,7 @@
                                 <a href="{{ route('parts.show', $part->id) }}">{{ $part->number }}</a>
                             </li>
                             @empty
-                                <div class="w-3/4 text-left bg-grey-lighter p-1">There are no parts associated with this asset.</div>
+                                <li class="mt-3">There are no parts associated with this asset.</li>
                             @endforelse
                         </ul>
                     </div>

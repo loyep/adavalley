@@ -17,7 +17,7 @@ class DeleteWorkOrderTest extends TestCase
 
         $this->assertCount(1, WorkOrder::all());
 
-        $this->delete("work-orders/$order->id", [$order->id]);
+        $this->delete("work-orders/$order->id");
         
         $this->assertCount(0, WorkOrder::all());
     }
